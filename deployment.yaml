@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iris-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: iris
+  template:
+    metadata:
+      labels:
+        app: iris
+    spec:
+      imagePullSecrets:
+      - name: regcreds
+      containers:
+      - name: iris-prediction
+        image: flabbergasted14/iris_prediction:latest
+        ports:
+        - containerPort: 5000
+
+
